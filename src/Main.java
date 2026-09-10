@@ -1,13 +1,62 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+    MiListaDoble miListaDoble = new MiListaDoble();
+    System.out.println(miListaDoble.toString());
+    System.out.println("¿Está vacía? " + miListaDoble.isEmpty());
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+    miListaDoble.insertHead(0);
+    miListaDoble.insertHead("Juan");
+    miListaDoble.insertHead(true);
+    miListaDoble.insertTail("Angela");
+
+    System.out.println(miListaDoble.toString());
+    System.out.println("Tamaño: " + miListaDoble.getSize());
+    System.out.println("Cabeza: " + miListaDoble.getHead());
+    System.out.println("Cola: " + miListaDoble.getTail());
+
+    DoubleNode nodoJuan = miListaDoble.search("Juan");
+    System.out.println("¿Contiene 'Juan'? " + miListaDoble.contains("Juan"));
+    System.out.println("Dato del nodo encontrado: " + miListaDoble.get(nodoJuan));
+
+    miListaDoble.set(nodoJuan, "Juan Carlos");
+    System.out.println("Después de set: " + miListaDoble.toString());
+
+    miListaDoble.insert(nodoJuan, "Nuevo después de Juan Carlos");
+    System.out.println("Después de insert(node, object): " + miListaDoble.toString());
+
+    miListaDoble.insert("Angela", "Nuevo después de Angela");
+    System.out.println("Después de insert(objectRef, object): " + miListaDoble.toString());
+
+    Object[] arreglo = miListaDoble.toArray();
+    System.out.print("Arreglo: ");
+    for (Object o : arreglo) {
+        System.out.print(o + " ");
     }
+    System.out.println();
+
+    miListaDoble.remove(nodoJuan);
+    System.out.println("Después de remove: " + miListaDoble.toString());
+
+    miListaDoble.add("Elemento agregado con add()");
+    System.out.println("Después de add: " + miListaDoble.toString());
+
+    miListaDoble.clear();
+    System.out.println("Después de clear: " + miListaDoble.toString());
+    System.out.println("¿Está vacía? " + miListaDoble.isEmpty());
+
+
+    MiListaDoble numeros = new MiListaDoble();
+    numeros.insertTail(5);
+    numeros.insertTail(1);
+    numeros.insertTail(3);
+    numeros.insertTail(2);
+    numeros.insertTail(4);
+    System.out.println("Lista de números: " + numeros.toString());
+
+    MiListaDoble ordenada = numeros.sortList();
+    System.out.println("Lista ordenada: " + ordenada.toString());
+
+    DoubleNode inicio = numeros.search(1);
+    DoubleNode fin = numeros.search(2);
+    MiListaDoble sub = numeros.subList(inicio, fin);
+    System.out.println("Sublista de 1 a 2: " + sub.toString());
 }
